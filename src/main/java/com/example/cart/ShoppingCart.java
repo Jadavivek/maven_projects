@@ -7,7 +7,6 @@ public class ShoppingCart {
 
     private final Map<String, Double> items = new HashMap<>();
 
-    // Add item with price
     public void addItem(String item, double price) {
         if (item == null || item.isEmpty()) {
             throw new IllegalArgumentException("Item name is invalid");
@@ -18,7 +17,6 @@ public class ShoppingCart {
         items.put(item, price);
     }
 
-    // Remove item
     public void removeItem(String item) {
         if (!items.containsKey(item)) {
             throw new IllegalArgumentException("Item not found in cart");
@@ -26,7 +24,7 @@ public class ShoppingCart {
         items.remove(item);
     }
 
-    // Get total price
+  
     public double getTotalPrice() {
         return items.values().stream()
                     .mapToDouble(Double::doubleValue)
