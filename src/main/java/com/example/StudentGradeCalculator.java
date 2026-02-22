@@ -1,3 +1,4 @@
+package com.example.grade;
 public class StudentGradeCalculator 
 {
   List<Integer> marks= new ArrayList<>();
