@@ -1,24 +1,14 @@
-package com.seed.dao;
+package com.seed.util;
  
-import com.seed.entity.Movie;
-import com.seed.util.JPAUtil;
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.*;
  
+public class JPAUtil {
  
-public class MovieDAO {
+    private static EntityManagerFactory emf =
+            Persistence.createEntityManagerFactory("myPU");
  
-    EntityManager em=JPAUtil.getEntityManager();
-    
-    //insert
-    public void saveMovie(Movie movie)
-    {
-    	em.getTransaction().begin();
-    	 em.persist(movie);
-    	em.getTransaction().commit();
-    	
-    	System.out.println("data inserted successfully...");	
+    public static EntityManager getEntityManager() {
+        return emf.createEntityManager();
     }
-   
-       
 }
  
