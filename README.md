@@ -3,41 +3,48 @@ package com.seed.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class Customer {
+public class Orders {
 
     @Id
-    private int customerId;
+    private int orderId;
 
-    private String name;
-    private String email;
+    private String product;
+    private double price;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
     // Getters & Setters
-    public int getCustomerId() {
-        return customerId;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
-    public String getName() {
-        return name;
+    public String getProduct() {
+        return product;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProduct(String product) {
+        this.product = product;
     }
 
-    public String getEmail() {
-        return email;
+    public double getPrice() {
+        return price;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return name;
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
