@@ -1,24 +1,19 @@
 package com.seed.entity;
 
 import jakarta.persistence.*;
-import java.util.Date;
 
 @Entity
-public class InstituteHistory {
+public class Institute {
 
     @Id
+    @GeneratedValue
     private int instituteId;
 
-    private String founder;
+    private String instituteName;
 
-    @Temporal(TemporalType.DATE)
-    private Date foundationDate;
-
-    @Embedded
-    private Address hoAddress;
-
-    @OneToOne(mappedBy = "history")
-    private Institute institute;
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private InstituteHistory history;
 
     // getters setters
 }
