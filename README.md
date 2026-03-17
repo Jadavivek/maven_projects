@@ -1,76 +1,52 @@
-package com.seed.dao;
+package com.seed;
  
 import java.util.List;
  
+import com.seed.dao.OrderDAO;
+import com.seed.entity.Customer;
 import com.seed.entity.Orders;
-import com.seed.util.JPAUtil;
  
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
+public class App {
  
-public class OrderDAO {
+    public static void main(String[] args) {
  
-    EntityManager em=JPAUtil.getEntityManager();
-    
-    //insert
-    public void saveOrder(Orders orders)
-    {
-    	em.getTransaction().begin();
+      Customer c1=new Customer();
+      
+      	c1.setCustomerId(3);
+      	c1.setName("prachi");
+      	c1.setEmail("prachi@gmail.com");
+      	
+      Orders o1=new Orders();
+       o1.setOrderId(105);
+       o1.setProduct("Books");
+       o1.setPrice(1000);
+       o1.setCustomer(c1);
+       
+      Orders o2=new Orders();
+	      o2.setOrderId(106);
+	      o2.setProduct("cloths");
+	      o2.setPrice(5000);
+	      o2.setCustomer(c1);
+	      
+	  OrderDAO dao=new OrderDAO();
+//	    dao.saveOrder(o1);
+//	    dao.saveOrder(o2);
+//	    
+	    List<Orders> orderList=dao.getAllOrders();
+	    
+	    for(Orders o:orderList)
+	    	System.out.println(o.getOrderId() + " " +o.getProduct()+ " "+o.getPrice()+ " "+o.getCustomer());
+	    
+	    
+	    
+	    
+	    
     	
-    	em.persist(orders.getCustomer());
-    	em.persist(orders);
-    	
-    	em.getTransaction().commit();
-    	
-    	System.out.println("data inserted successfully...");	
     }
-   
-    
-    //select all
-    public List<Orders> getAllOrders() {
-    	
-    	Query q=em.createQuery("from Orders");
-    	 return q.getResultList();
-    }
-    
-    //select by product
-    
-    public List<Orders> getOrdersByProduct(String product) {
-    	
-    	Query q=em.createQuery("SELECT o from Orders o WHERE o.product=:p");
-    	
-    	   q.setParameter("p", product);
-    	 return q.getResultList();
-    }
-    
-    //update
-    public void updateOrder(int id,double price)
-    {
-    	em.getTransaction().begin();
-    	
-    	Orders o=em.find(Orders.class, id);
-    	  o.setPrice(price);
-    	
-    	em.getTransaction().commit();
-    	
-    	System.out.println("data updated successfully...");	
-    }
-    
-    //delete
-    public void deleteOrder(int id,double price)
-    {
-    	em.getTransaction().begin();
-    	
-    	Orders o=em.find(Orders.class, id);
-    	  em.remove(o);
-    	
-    	em.getTransaction().commit();
-    	
-    	System.out.println("data deleted successfully...");	
-    }
-    
-    
-    
-    
 }
+ 
+ 
+ 
+ 
+ 
  
