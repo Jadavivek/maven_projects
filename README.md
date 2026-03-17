@@ -1,39 +1,51 @@
-package com.seed;
+package com.seed.service;
 
-import com.seed.service.InstituteService;
-import java.util.Scanner;
+import com.seed.entity.*;
+import com.seed.util.JPAUtil;
+import jakarta.persistence.EntityManager;
 
-public class App {
+public class InstituteService {
 
-    public static void main(String[] args) {
+    public void saveInstitute() {
 
-        Scanner sc = new Scanner(System.in);
-        InstituteService service = new InstituteService();
+        EntityManager em = JPAUtil.getEntityManager();
+        em.getTransaction().begin();
 
-        while (true) {
-            System.out.println("\n1. Save Data");
-            System.out.println("2. Fetch Data");
-            System.out.println("3. Exit");
+        Address addr = new Address();
+        addr.setStreet("MG Road");
+        addr.setCity("Hyderabad");
+        addr.setCountry("India");
+        addr.setPinCode("500001");
 
-            int choice = sc.nextInt();
+        InstituteHistory history = new InstituteHistory();
+        history.setFounder("Ramesh Sir");
+        history.setHoAddress(addr);
 
-            switch (choice) {
-                case 1:
-                    service.saveInstitute();
-                    break;
+        Institute inst = new Institute();
+        inst.setInstituteName("Tech Institute");
+        inst.setHistory(history);
 
-                case 2:
-                    System.out.println("Enter Institute ID:");
-                    int id = sc.nextInt();
-                    service.getInstitute(id);
-                    break;
+        em.persist(inst);
 
-                case 3:
-                    System.exit(0);
+        em.getTransaction().commit();
+        em.close();
 
-                default:
-                    System.out.println("Invalid choice");
-            }
+        System.out.println("Data Saved Successfully ✅");
+    }
+
+    public void getInstitute(int id) {
+
+        EntityManager em = JPAUtil.getEntityManager();
+
+        Institute inst = em.find(Institute.class, id);
+
+        if (inst != null) {
+            System.out.println("Institute: " + inst.getInstituteName());
+            System.out.println("Founder: " + inst.getHistory().getFounder());
+            System.out.println("City: " + inst.getHistory().getHoAddress().getCity());
+            System.out.println("Country: " + inst.getHistory().getHoAddress().getCountry());
+        } else {
+            System.out.println("Not Found ❌");
         }
     }
 }
