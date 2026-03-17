@@ -1,19 +1,33 @@
-package com.seed.entity;
+package com.seed.client;
 
-import jakarta.persistence.*;
+import com.seed.entity.*;
+import com.seed.util.JPAUtil;
+import jakarta.persistence.EntityManager;
 
-@Entity
-public class Institute {
+public class Client1 {
 
-    @Id
-    @GeneratedValue
-    private int instituteId;
+    public static void main(String[] args) {
 
-    private String instituteName;
+        EntityManager em = JPAUtil.getEntityManager();
+        em.getTransaction().begin();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private InstituteHistory history;
+        Address addr = new Address();
+        addr.setCity("Mumbai");
+        addr.setCountry("India");
 
-    // getters setters
+        InstituteHistory history = new InstituteHistory();
+        history.setFounder("ABC Sir");
+        history.setHoAddress(addr);
+
+        Institute inst = new Institute();
+        inst.setInstituteName("Seed Institute");
+        inst.setHistory(history);
+
+        em.persist(inst);
+
+        em.getTransaction().commit();
+        em.close();
+
+        System.out.println("Saved Successfully!");
+    }
 }
