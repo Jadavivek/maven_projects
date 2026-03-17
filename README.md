@@ -1,27 +1,38 @@
 package com.seed.entity;
 
 import jakarta.persistence.*;
+import java.util.Date;
 
 @Entity
-public class Institute {
+public class InstituteHistory {
 
     @Id
-    @GeneratedValue
     private int instituteId;
 
-    private String instituteName;
+    private String founder;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private InstituteHistory history;
+    @Temporal(TemporalType.DATE)
+    private Date foundationDate;
+
+    @Embedded
+    private Address hoAddress;
+
+    @OneToOne(mappedBy = "history")
+    private Institute institute;
 
     // ✅ getters & setters
     public int getInstituteId() { return instituteId; }
     public void setInstituteId(int instituteId) { this.instituteId = instituteId; }
 
-    public String getInstituteName() { return instituteName; }
-    public void setInstituteName(String instituteName) { this.instituteName = instituteName; }
+    public String getFounder() { return founder; }
+    public void setFounder(String founder) { this.founder = founder; }
 
-    public InstituteHistory getHistory() { return history; }
-    public void setHistory(InstituteHistory history) { this.history = history; }
+    public Date getFoundationDate() { return foundationDate; }
+    public void setFoundationDate(Date foundationDate) { this.foundationDate = foundationDate; }
+
+    public Address getHoAddress() { return hoAddress; }
+    public void setHoAddress(Address hoAddress) { this.hoAddress = hoAddress; }
+
+    public Institute getInstitute() { return institute; }
+    public void setInstitute(Institute institute) { this.institute = institute; }
 }
