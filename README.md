@@ -3,55 +3,47 @@ package com.seed.entity;
 import java.util.HashSet;
 import java.util.Set;
  
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
  
 @Entity
-public class Movie {
+public class Actor {
    
 	@Id
 	@GeneratedValue
-	private int movieId;
+	private int actorId;
 	
-	private String movieName;
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="movie_actor",
-	            joinColumns = @JoinColumn(name="movie_id"),
-	            inverseJoinColumns = @JoinColumn(name="actor_id") )
-	private Set<Actor> actors=new HashSet<>();
+	private String name;
+ 
+	@ManyToMany(mappedBy = "actors")
+	private Set<Movie> movies=new HashSet<>();
  
 	
-	public Set<Actor> getActors() {
-		return actors;
+	public Set<Movie> getMovies() {
+		return movies;
 	}
  
-	public void setActors(Set<Actor> actors) {
-		this.actors = actors;
+	public void setMovies(Set<Movie> movies) {
+		this.movies = movies;
 	}
  
-	public int getMovieId() {
-		return movieId;
+	public int getActorId() {
+		return actorId;
 	}
  
-	public String getMovieName() {
-		return movieName;
+	public String getName() {
+		return name;
 	}
  
-	public void setMovieId(int movieId) {
-		this.movieId = movieId;
+	public void setActorId(int actorId) {
+		this.actorId = actorId;
 	}
  
-	public void setMovieName(String movieName) {
-		this.movieName = movieName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	
 	
 	
 }
