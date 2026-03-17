@@ -1,38 +1,25 @@
 package com.seed.entity;
 
-import jakarta.persistence.*;
-import java.util.Date;
+import jakarta.persistence.Embeddable;
 
-@Entity
-public class InstituteHistory {
+@Embeddable
+public class Address {
 
-    @Id
-    private int instituteId;
-
-    private String founder;
-
-    @Temporal(TemporalType.DATE)
-    private Date foundationDate;
-
-    @Embedded
-    private Address hoAddress;
-
-    @OneToOne(mappedBy = "history")
-    private Institute institute;
+    private String street;
+    private String city;
+    private String country;
+    private String pinCode;
 
     // ✅ getters & setters
-    public int getInstituteId() { return instituteId; }
-    public void setInstituteId(int instituteId) { this.instituteId = instituteId; }
+    public String getStreet() { return street; }
+    public void setStreet(String street) { this.street = street; }
 
-    public String getFounder() { return founder; }
-    public void setFounder(String founder) { this.founder = founder; }
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
 
-    public Date getFoundationDate() { return foundationDate; }
-    public void setFoundationDate(Date foundationDate) { this.foundationDate = foundationDate; }
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
 
-    public Address getHoAddress() { return hoAddress; }
-    public void setHoAddress(Address hoAddress) { this.hoAddress = hoAddress; }
-
-    public Institute getInstitute() { return institute; }
-    public void setInstitute(Institute institute) { this.institute = institute; }
+    public String getPinCode() { return pinCode; }
+    public void setPinCode(String pinCode) { this.pinCode = pinCode; }
 }
