@@ -1,79 +1,86 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
-  <modelVersion>4.0.0</modelVersion>
-
-  <groupId>com.vivek.infotech</groupId>
-  <artifactId>vivek_17_03_2026</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-
-  <name>vivek_17_03_2026 Maven Webapp</name>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
-  </properties>
-
-  <dependencies>
-
-    <!-- Hibernate -->
-    <dependency>
-      <groupId>org.hibernate.orm</groupId>
-      <artifactId>hibernate-core</artifactId>
-      <version>6.4.4.Final</version>
-    </dependency>
-
-    <!-- JPA -->
-    <dependency>
-      <groupId>jakarta.persistence</groupId>
-      <artifactId>jakarta.persistence-api</artifactId>
-      <version>3.1.0</version>
-    </dependency>
-
-    <!-- MySQL -->
-    <dependency>
-      <groupId>com.mysql</groupId>
-      <artifactId>mysql-connector-j</artifactId>
-      <version>8.3.0</version>
-    </dependency>
-
-    <!-- Logging (VERY IMPORTANT) -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <version>2.0.9</version>
-    </dependency>
-
-    <!-- Test -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.2</version>
-      <scope>test</scope>
-    </dependency>
-
-  </dependencies>
-
-  <build>
-    <finalName>vivek_17_03_2026</finalName>
-
-    <plugins>
-      <!-- Compiler Plugin -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.11.0</version>
-        <configuration>
-          <source>21</source>
-          <target>21</target>
-        </configuration>
-      </plugin>
-    </plugins>
-
-  </build>
-
-</project>
+package com.seed;
+ 
+import com.seed.dao.MovieDAO;
+import com.seed.entity.Actor;
+import com.seed.entity.Movie;
+ 
+public class App
+{
+    public static void main( String[] args )
+    {
+         //Actors
+    	
+    	Actor a1=new Actor();
+    	   a1.setName("Shah Rukh Khan");
+     	
+    	Actor a2=new Actor();
+    	   a2.setName("Kajol");
+    	
+        Actor a3=new Actor();
+    	   a3.setName("Ranbir Kapoor");
+    	   
+    	Actor a4=new Actor();
+    	   a4.setName("Alia bhat");  
+    	   
+    	Actor a5=new Actor();
+    	   a5.setName("Amir Khan");
+    	   
+    	//Movie
+    	   
+    	 Movie m1=new Movie();
+    	     m1.setMovieName("DDLJ");
+    	
+    	 Movie m2=new Movie();
+    	 	m2.setMovieName("Brmhastra");
+    	     
+    	 Movie m3=new Movie();
+    	     m3.setMovieName("Dangal");
+    	     
+    	 Movie m4=new Movie();
+    	     m4.setMovieName("My name is khan");
+    	     
+    	//Relationship//
+    	     
+    	 //DDLJ -Shah Rukh Khan,Kajol
+    	     
+    	 m1.getActors().add(a1);
+    	 m1.getActors().add(a2);
+    	 a1.getMovies().add(m1);
+    	 a2.getMovies().add(m1);
+    	
+    	
+     	 //Brmhastra -Ranbir Kapoor,Alia bhat
+	     
+    	 m2.getActors().add(a3);
+    	 m2.getActors().add(a4);
+    	 a3.getMovies().add(m2);
+    	 a4.getMovies().add(m2);
+    	
+    	 //Dangal -amir Khan
+    	 m3.getActors().add(a5);
+    	 a5.getMovies().add(m3);
+    	
+    	 //My name is khan
+    	 m4.getActors().add(a1);
+    	 a1.getMovies().add(m4);  
+    	
+    	
+    	 //save data
+    	
+    	 MovieDAO dao=new MovieDAO();
+    	
+    	 dao.saveMovie(m1);
+    	 dao.saveMovie(m2);
+    	 dao.saveMovie(m3);
+    	 dao.saveMovie(m4);
+    	
+    }
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
