@@ -1,13 +1,35 @@
-package com.seed.util;
+package com.seed.dao;
+
+import java.util.List;
+
+import com.seed.entity.Orders;
+import com.seed.util.JPAUtil;
 
 import jakarta.persistence.*;
 
-public class JPAUtil {
+public class OrderDAO {
 
-    private static final EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("myPU");
+    // SAVE
+    public void saveOrder(Orders order) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
 
-    public static EntityManager getEntityManager() {
-        return emf.createEntityManager();
+        tx.begin();
+        em.persist(order);
+        tx.commit();
+
+        em.close();
+    }
+
+    // FETCH ALL
+    public List<Orders> getAllOrders() {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        List<Orders> list =
+                em.createQuery("from Orders", Orders.class).getResultList();
+
+        em.close();
+        return list;
     }
 }
+
