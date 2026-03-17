@@ -3,31 +3,23 @@ package com.seed.client;
 import com.seed.entity.*;
 import com.seed.util.JPAUtil;
 import jakarta.persistence.EntityManager;
+import java.util.Scanner;
 
-public class Client1 {
+public class Client2 {
 
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter instituteId:");
+        int id = sc.nextInt();
+
         EntityManager em = JPAUtil.getEntityManager();
-        em.getTransaction().begin();
 
-        Address addr = new Address();
-        addr.setCity("Mumbai");
-        addr.setCountry("India");
+        Institute inst = em.find(Institute.class, id);
 
-        InstituteHistory history = new InstituteHistory();
-        history.setFounder("ABC Sir");
-        history.setHoAddress(addr);
-
-        Institute inst = new Institute();
-        inst.setInstituteName("Seed Institute");
-        inst.setHistory(history);
-
-        em.persist(inst);
-
-        em.getTransaction().commit();
-        em.close();
-
-        System.out.println("Saved Successfully!");
+        System.out.println("Institute: " + inst.getInstituteName());
+        System.out.println("Founder: " + inst.getHistory().getFounder());
+        System.out.println("City: " + inst.getHistory().getHoAddress().getCity());
+        System.out.println("Country: " + inst.getHistory().getHoAddress().getCountry());
     }
 }
