@@ -1,22 +1,22 @@
-Mar 17, 2026 7:55:25 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
+Mar 17, 2026 7:58:03 PM org.hibernate.jpa.internal.util.LogHelper logPersistenceUnitInformation
 INFO: HHH000204: Processing PersistenceUnitInfo [name: myPU]
-Mar 17, 2026 7:55:25 PM org.hibernate.Version logVersion
+Mar 17, 2026 7:58:03 PM org.hibernate.Version logVersion
 INFO: HHH000412: Hibernate ORM core version 6.4.4.Final
-Mar 17, 2026 7:55:26 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
+Mar 17, 2026 7:58:03 PM org.hibernate.cache.internal.RegionFactoryInitiator initiateService
 INFO: HHH000026: Second-level cache disabled
-Mar 17, 2026 7:55:26 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
+Mar 17, 2026 7:58:04 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl configure
 WARN: HHH10001002: Using built-in connection pool (not intended for production use)
-Mar 17, 2026 7:55:26 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Mar 17, 2026 7:58:04 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001005: Loaded JDBC driver class: com.mysql.cj.jdbc.Driver
-Mar 17, 2026 7:55:26 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
-INFO: HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/soham]
-Mar 17, 2026 7:55:26 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Mar 17, 2026 7:58:04 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+INFO: HHH10001012: Connecting with JDBC URL [jdbc:mysql://localhost:3306/vivek]
+Mar 17, 2026 7:58:04 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001001: Connection properties: {password=****, user=root}
-Mar 17, 2026 7:55:26 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
+Mar 17, 2026 7:58:04 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl buildCreator
 INFO: HHH10001003: Autocommit mode: false
-Mar 17, 2026 7:55:26 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
+Mar 17, 2026 7:58:04 PM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl$PooledConnections <init>
 INFO: HHH10001115: Connection pool size: 20 (min=1)
-Mar 17, 2026 7:55:27 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator getJdbcEnvironmentUsingJdbcMetadata
+Mar 17, 2026 7:58:05 PM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator getJdbcEnvironmentUsingJdbcMetadata
 WARN: HHH000342: Could not obtain connection to query metadata
 java.lang.IllegalStateException: Cannot get a connection as the driver manager is not properly initialized
 	at org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl.getConnection(DriverManagerConnectionProviderImpl.java:259)
@@ -104,7 +104,7 @@ Caused by: org.hibernate.exception.SQLGrammarException: Error calling Driver#con
 	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130)
 	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
 	... 14 more
-Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'soham'
+Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'vivek'
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
 	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
 	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:815)
