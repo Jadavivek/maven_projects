@@ -1,17 +1,25 @@
+package com.seed.entity;
 
-1. Save Data
-2. Fetch Data
-3. Exit
-1
-Exception in thread "main" java.lang.Error: Unresolved compilation problems: 
-	The method setStreet(String) is undefined for the type Address
-	The method setCity(String) is undefined for the type Address
-	The method setCountry(String) is undefined for the type Address
-	The method setPinCode(String) is undefined for the type Address
-	The method setFounder(String) is undefined for the type InstituteHistory
-	The method setHoAddress(Address) is undefined for the type InstituteHistory
-	The method setInstituteName(String) is undefined for the type Institute
-	The method setHistory(InstituteHistory) is undefined for the type Institute
+import jakarta.persistence.Embeddable;
 
-	at com.seed.service.InstituteService.saveInstitute(InstituteService.java:15)
-	at com.seed.App.main(App.java:22)
+@Embeddable
+public class Address {
+
+    private String street;
+    private String city;
+    private String country;
+    private String pinCode;
+
+    // ✅ ADD THIS
+    public String getStreet() { return street; }
+    public void setStreet(String street) { this.street = street; }
+
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
+
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
+
+    public String getPinCode() { return pinCode; }
+    public void setPinCode(String pinCode) { this.pinCode = pinCode; }
+}
