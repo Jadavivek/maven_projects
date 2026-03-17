@@ -1,46 +1,17 @@
-package com.seed;
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
 
-import java.util.List;
+    <persistence-unit name="myPU">
 
-import com.seed.dao.OrderDAO;
-import com.seed.entity.Customer;
-import com.seed.entity.Orders;
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/soham"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="root"/>
 
-public class App {
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
 
-    public static void main(String[] args) {
+    </persistence-unit>
 
-        Customer c1 = new Customer();
-        c1.setCustomerId(3);
-        c1.setName("Prachi");
-        c1.setEmail("prachi@gmail.com");
-
-        Orders o1 = new Orders();
-        o1.setOrderId(105);
-        o1.setProduct("Books");
-        o1.setPrice(1000);
-        o1.setCustomer(c1);
-
-        Orders o2 = new Orders();
-        o2.setOrderId(106);
-        o2.setProduct("Clothes");
-        o2.setPrice(5000);
-        o2.setCustomer(c1);
-
-        OrderDAO dao = new OrderDAO();
-
-        dao.saveOrder(o1);
-        dao.saveOrder(o2);
-
-        List<Orders> orderList = dao.getAllOrders();
-
-        for (Orders o : orderList) {
-            System.out.println(
-                o.getOrderId() + " " +
-                o.getProduct() + " " +
-                o.getPrice() + " " +
-                o.getCustomer().getName()
-            );
-        }
-    }
-}
+</persistence>
