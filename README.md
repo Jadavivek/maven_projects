@@ -1,52 +1,43 @@
-package com.seed;
- 
-import java.util.List;
- 
-import com.seed.dao.OrderDAO;
-import com.seed.entity.Customer;
-import com.seed.entity.Orders;
- 
-public class App {
- 
-    public static void main(String[] args) {
- 
-      Customer c1=new Customer();
-      
-      	c1.setCustomerId(3);
-      	c1.setName("prachi");
-      	c1.setEmail("prachi@gmail.com");
-      	
-      Orders o1=new Orders();
-       o1.setOrderId(105);
-       o1.setProduct("Books");
-       o1.setPrice(1000);
-       o1.setCustomer(c1);
-       
-      Orders o2=new Orders();
-	      o2.setOrderId(106);
-	      o2.setProduct("cloths");
-	      o2.setPrice(5000);
-	      o2.setCustomer(c1);
-	      
-	  OrderDAO dao=new OrderDAO();
-//	    dao.saveOrder(o1);
-//	    dao.saveOrder(o2);
-//	    
-	    List<Orders> orderList=dao.getAllOrders();
-	    
-	    for(Orders o:orderList)
-	    	System.out.println(o.getOrderId() + " " +o.getProduct()+ " "+o.getPrice()+ " "+o.getCustomer());
-	    
-	    
-	    
-	    
-	    
-    	
+package com.seed.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Customer {
+
+    @Id
+    private int customerId;
+
+    private String name;
+    private String email;
+
+    // Getters & Setters
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
- 
- 
- 
- 
- 
- 
