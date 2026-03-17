@@ -1,25 +1,36 @@
-package com.seed.entity;
+package com.seed;
 
-import jakarta.persistence.Embeddable;
+import com.seed.service.InstituteService;
+import java.util.Scanner;
 
-@Embeddable
-public class Address {
+public class App {
 
-    private String street;
-    private String city;
-    private String country;
-    private String pinCode;
+    public static void main(String[] args) {
 
-    // ✅ ADD THIS
-    public String getStreet() { return street; }
-    public void setStreet(String street) { this.street = street; }
+        Scanner sc = new Scanner(System.in);
+        InstituteService service = new InstituteService();
 
-    public String getCity() { return city; }
-    public void setCity(String city) { this.city = city; }
+        while (true) {
+            System.out.println("\n1. Save Data");
+            System.out.println("2. Fetch Data");
+            System.out.println("3. Exit");
 
-    public String getCountry() { return country; }
-    public void setCountry(String country) { this.country = country; }
+            int choice = sc.nextInt();
 
-    public String getPinCode() { return pinCode; }
-    public void setPinCode(String pinCode) { this.pinCode = pinCode; }
+            switch (choice) {
+                case 1:
+                    service.saveInstitute();
+                    break;
+
+                case 2:
+                    System.out.println("Enter Institute ID:");
+                    int id = sc.nextInt();
+                    service.getInstitute(id);
+                    break;
+
+                case 3:
+                    System.exit(0);
+            }
+        }
+    }
 }
