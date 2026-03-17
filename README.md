@@ -1,14 +1,13 @@
-package com.seed.entity;
+package com.seed.util;
 
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 
-@Embeddable
-public class Address {
+public class JPAUtil {
 
-    private String street;
-    private String city;
-    private String country;
-    private String pinCode;
+    private static EntityManagerFactory emf =
+            Persistence.createEntityManagerFactory("myPU");
 
-    // getters & setters
+    public static EntityManager getEntityManager() {
+        return emf.createEntityManager();
+    }
 }
