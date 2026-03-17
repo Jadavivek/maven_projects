@@ -1,25 +1,39 @@
-package com.seed.client;
+package com.seed;
 
-import com.seed.entity.*;
-import com.seed.util.JPAUtil;
-import jakarta.persistence.EntityManager;
+import com.seed.service.InstituteService;
 import java.util.Scanner;
 
-public class Client2 {
+public class App {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter instituteId:");
-        int id = sc.nextInt();
+        InstituteService service = new InstituteService();
 
-        EntityManager em = JPAUtil.getEntityManager();
+        while (true) {
+            System.out.println("\n1. Save Data");
+            System.out.println("2. Fetch Data");
+            System.out.println("3. Exit");
 
-        Institute inst = em.find(Institute.class, id);
+            int choice = sc.nextInt();
 
-        System.out.println("Institute: " + inst.getInstituteName());
-        System.out.println("Founder: " + inst.getHistory().getFounder());
-        System.out.println("City: " + inst.getHistory().getHoAddress().getCity());
-        System.out.println("Country: " + inst.getHistory().getHoAddress().getCountry());
+            switch (choice) {
+                case 1:
+                    service.saveInstitute();
+                    break;
+
+                case 2:
+                    System.out.println("Enter Institute ID:");
+                    int id = sc.nextInt();
+                    service.getInstitute(id);
+                    break;
+
+                case 3:
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }
     }
 }
