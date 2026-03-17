@@ -1,24 +1,14 @@
 package com.seed.entity;
 
-import jakarta.persistence.*;
-import java.util.Date;
+import jakarta.persistence.Embeddable;
 
-@Entity
-public class InstituteHistory {
+@Embeddable
+public class Address {
 
-    @Id
-    private int instituteId;
-
-    private String founder;
-
-    @Temporal(TemporalType.DATE)
-    private Date foundationDate;
-
-    @Embedded
-    private Address hoAddress;
-
-    @OneToOne(mappedBy = "history")
-    private Institute institute;
+    private String street;
+    private String city;
+    private String country;
+    private String pinCode;
 
     // getters & setters
 }
