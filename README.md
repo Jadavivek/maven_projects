@@ -1,17 +1,15 @@
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
     
-    <persistence-unit name="studentPU">
+    <persistence-unit name="myPU">
         
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/studentdb"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/soham"/>
             
-            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
             
-            <property name="javax.persistence.jdbc.password" value="root"/>
-            
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="jakarta.persistence.jdbc.password" value="root"/>
             
             <property name="hibernate.hbm2ddl.auto" value="create"/>
             
@@ -19,5 +17,5 @@
         </properties>
         
     </persistence-unit>
-
+    
 </persistence>
