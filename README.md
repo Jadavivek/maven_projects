@@ -1,51 +1,19 @@
-package com.seed.service;
+package com.seed.entity;
 
-import com.seed.entity.*;
-import com.seed.util.JPAUtil;
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.*;
 
-public class InstituteService {
+@Entity
+public class Institute {
 
-    public void saveInstitute() {
+    @Id
+    @GeneratedValue
+    private int instituteId;
 
-        EntityManager em = JPAUtil.getEntityManager();
-        em.getTransaction().begin();
+    private String instituteName;
 
-        Address addr = new Address();
-        addr.setStreet("MG Road");
-        addr.setCity("Hyderabad");
-        addr.setCountry("India");
-        addr.setPinCode("500001");
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private InstituteHistory history;
 
-        InstituteHistory history = new InstituteHistory();
-        history.setFounder("Ramesh Sir");
-        history.setHoAddress(addr);
-
-        Institute inst = new Institute();
-        inst.setInstituteName("Tech Institute");
-        inst.setHistory(history);
-
-        em.persist(inst);
-
-        em.getTransaction().commit();
-        em.close();
-
-        System.out.println("Data Saved Successfully ✅");
-    }
-
-    public void getInstitute(int id) {
-
-        EntityManager em = JPAUtil.getEntityManager();
-
-        Institute inst = em.find(Institute.class, id);
-
-        if (inst != null) {
-            System.out.println("Institute: " + inst.getInstituteName());
-            System.out.println("Founder: " + inst.getHistory().getFounder());
-            System.out.println("City: " + inst.getHistory().getHoAddress().getCity());
-            System.out.println("Country: " + inst.getHistory().getHoAddress().getCountry());
-        } else {
-            System.out.println("Not Found ❌");
-        }
-    }
+    // getters & setters
 }
