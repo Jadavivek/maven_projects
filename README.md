@@ -1,31 +1,36 @@
 package com.seed;
  
-import org.springframework.boot.SpringApplication;
-
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.stereotype.Component;
  
-@SpringBootApplication
-
-public class Demo3WithQualifierApplication {
- 
-	public static void main(String[] args) 
-
-	{
-
-		ConfigurableApplicationContext context= SpringApplication.run(Demo3WithQualifierApplication.class, args);
-
-		Bank b1=context.getBean(Bank.class);
-
-		   b1.show();
-
-		Bank b2=context.getBean(Bank.class);
-
-			   b2.show();   
-
+@Component("comp1")
+public class Computer {
+   
+	private int id;
+	private String brand;
+	
+	public void display() {
+		System.out.println("Computer Started...");
 	}
- 
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getBrand() {
+		return brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	@Override
+	public String toString() {
+		return "Computer [id=" + id + ", brand=" + brand + "]";
+	}
+	
+	
+	
 }
-
+ 
  
