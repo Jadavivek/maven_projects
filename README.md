@@ -1,59 +1,37 @@
-package com.seed.config;
+package com.seed;
  
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Scanner;
  
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.SpringApplication;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import org.springframework.context.ConfigurableApplicationContext;
  
-import com.seed.model.Computer;
-import com.seed.model.Device;
-import com.seed.model.Laptop;
 import com.seed.service.AccountService;
  
-//Centerlized bean creation(Config Layer)
+@SpringBootApplication
+
+public class Demo3WithOutQualifier1Application {
  
-@Configuration
-public class AppConfig {
-  
-	@Bean
-     public Device computer() {
-		return new Computer();
+	public static void main(String[] args) {
+
+	  ConfigurableApplicationContext context=	SpringApplication.run(Demo3WithOutQualifier1Application.class, args);
+
+	  AccountService service=context.getBean(AccountService.class);
+
+	  Scanner sc=new Scanner(System.in);
+
+	  System.out.println("enter device (computer/laptop)");
+
+	  String input=sc.nextLine();
+
+	  service.useDevice(input.toLowerCase());
+
+	  sc.close();
+
 	}
-	
-	@Bean
-    public Device laptop() {
-		return new Laptop();
-	}
-	
-	@Bean
-	public AccountService accountService() {
-		
-		AccountService service=new AccountService();
-		
-		Map<String,Device> map=new HashMap<>();
-		
-		
-		map.put("computer", computer());
-		map.put("laptop", laptop());
-		
-		service.setDevices(map);
-		
-		return service;
-		
-	}
-	
-	
-	
+ 
 }
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
  
