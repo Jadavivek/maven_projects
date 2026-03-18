@@ -1,10 +1,10 @@
 package com.seed.model;
  
-public class Computer implements Device
+public class Laptop implements Device
 {
  
-	public Computer() {
-		System.out.println("Object of Computer is created");
+	public Laptop() {
+		System.out.println("Object of Laptop is created");
 	}
 	@Override
 	public void use() {
