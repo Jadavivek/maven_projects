@@ -1,36 +1,47 @@
-package com.seed;
+package com.seed.service;
  
-import org.springframework.stereotype.Component;
+import java.util.Map;
+import com.seed.model.Device;
  
-@Component("comp1")
-public class Computer {
-   
-	private int id;
-	private String brand;
+//service Layer(business logic should go here)
+public class AccountService {
 	
-	public void display() {
-		System.out.println("Computer Started...");
-	}
+	private Map<String ,Device> devices;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getBrand() {
-		return brand;
-	}
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-	@Override
-	public String toString() {
-		return "Computer [id=" + id + ", brand=" + brand + "]";
-	}
-	
-	
-	
+     public AccountService() {
+    	 System.out.println("Account service is created");
+     }
+ 
+	 public Map<String, Device> getDevices() {
+		 return devices;
+	 }
+ 
+	 public void setDevices(Map<String, Device> devices) {
+		 this.devices = devices;
+	 }
+     
+      //Runtime switching device     
+     
+	 public void useDevice(String type) {
+		
+		  Device device=devices.get(type);  //sending request to Map interface
+		  
+		  if(device!=null) {
+			  device.use();
+		  }
+		  
+		  System.out.println("invalid device type....");
+		  
+	 }
+     
 }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
