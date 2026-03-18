@@ -1,40 +1,52 @@
-package com.seed.service;
+package com.seed.config;
  
+import java.util.HashMap;
 import java.util.Map;
+ 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+ 
+import com.seed.model.Computer;
 import com.seed.model.Device;
+import com.seed.model.Laptop;
+import com.seed.service.AccountService;
  
-//service Layer(business logic should go here)
-public class AccountService {
+//Centerlized bean creation(Config Layer)
+ 
+@Configuration
+public class AppConfig {
+  
+	@Bean
+     public Device computer() {
+		return new Computer();
+	}
 	
-	private Map<String ,Device> devices;
+	@Bean
+    public Device laptop() {
+		return new Laptop();
+	}
 	
-     public AccountService() {
-    	 System.out.println("Account service is created");
-     }
- 
-	 public Map<String, Device> getDevices() {
-		 return devices;
-	 }
- 
-	 public void setDevices(Map<String, Device> devices) {
-		 this.devices = devices;
-	 }
-     
-      //Runtime switching device     
-     
-	 public void useDevice(String type) {
+	@Bean
+	public AccountService accountService() {
 		
-		  Device device=devices.get(type);  //sending request to Map interface
-		  
-		  if(device!=null) {
-			  device.use();
-		  }
-		  
-		  System.out.println("invalid device type....");
-		  
-	 }
-     
+		AccountService service=new AccountService();
+		
+		Map<String,Device> map=new HashMap<>();
+		
+		
+		map.put("computer", computer());
+		map.put("laptop", laptop());
+		
+		service.setDevices(map);
+		
+		return service;
+		
+	}
+	
+	
+	
 }
+ 
  
  
  
